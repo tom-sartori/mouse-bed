@@ -1,9 +1,3 @@
-const cursorSize = 20;
-const padding = 5;
-const margin = 5;
-const hoverTime = 1000;
-let timeoutId;
-
 // Add a rectangle on the bottom right of the page.
 const bed = document.createElement("div");
 bed.id = "bed";
@@ -12,12 +6,13 @@ bed.appendChild(getStyle());    // Set style.
 document.querySelector("body").appendChild(bed);
 
 // Set event listeners.
+let timeoutId;
 bed.onmousemove = () => {
     clear()
 
     timeoutId = window.setTimeout(() => {
         document.body.style.cursor = 'none';
-    }, hoverTime);
+    }, 1000);
 };
 
 bed.onmouseleave = () => {
@@ -30,19 +25,19 @@ function clear() {
 }
 
 function getStyle() {
-    Object.assign(bed.style, {
-        position: "fixed",
-        bottom: 0,
-        right: 0,
-        width: toPx(cursorSize + padding),
-        height: toPx(cursorSize + padding),
-        margin: toPx(margin),
-        borderRadius: toPx(2),
-        backgroundColor: "#0C356A",
-        transition: "1800ms"
-    });
-
-    const hover = `
+    const css = `
+        #bed {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 25px;
+            height: 25px;
+            margin: 5px;
+            border-radius: 2px;
+            background-color: #0C356A;
+            transition: 2000ms;
+        }
+        
         #bed:hover {
             background-color: transparent;
             border-radius: 4px;
@@ -52,7 +47,7 @@ function getStyle() {
     `;
 
     const style = document.createElement('style');
-    style.appendChild(document.createTextNode(hover));
+    style.appendChild(document.createTextNode(css));
     return style;
 }
 
