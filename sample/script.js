@@ -7,8 +7,6 @@ bed.onmousemove = () => {
     clear()
 
     timeoutId = window.setTimeout(() => {
-        console.log('go')
-        // Hide the cursor in 3 seconds
         document.body.style.cursor = 'none';
     }, hoverTime);
 };
